@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{% endblock %}</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #171a21;
+        color: #c6d4df;
+        margin: 0;
+        padding: 0;
+    }
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #1b2838;
+        padding: 10px 20px;
+    }
+    .navbar .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+    .navbar .nav-links a {
+        color: #c6d4df;
+        text-decoration: none;
+        font-size: 18px;
+    }
+    .navbar .user-info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .navbar .user-info span {
+        font-size: 16px;
+    }
+    .navbar .user-info a {
+        color: #c6d4df;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+    }
+    .game-card {
+        width: 200px;
+        background-color: #1b2838;
+        border-radius: 8px;
+        margin: 10px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .game-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .game-playtime {
+        font-size: 14px;
+    }
+    .game-image {
+        width: 100%;
+        border-radius: 8px;
+    }
+    .load-more {
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+        padding: 10px;
+        text-align: center;
+        background-color: #1b2838;
+        border-radius: 8px;
+        color: #c6d4df;
+        cursor: pointer;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="{% url 'my_games' %}">My Games</a>
+            <a href="{% url 'recommendations' %}">Recommendations</a>
+            <a href="{% url 'cf_recommendations' %}">CF_Recommendations</a>
+            <a href="{% url 'cf_similarities' %}">CF_Similarities</a>
+            <a href="{% url 'cb_recommendations' %}">CB_Recommendations</a>
+        </div>
+        <div class="user-info">
+            <span>{{ request.user.username }}</span>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

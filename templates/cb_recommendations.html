@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+CB Recommendations - Steam Recommendations
+{% endblock %}
+
+{% block content %}
+<h1>CB Recommendations</h1>
+<div class="container" id="game-container">
+    {% for game in game_recommendations %}
+    <div class="game-card">
+        <img src="{{ game.header_image }}" alt="{{ game.game_name }}" class="game-image">
+        <div class="game-title">{{ game.game_name }}</div>
+        <div class="game-details">
+            <p>AppID: {{ game.appid }}</p>
+            <p>Genres: {{ game.genres }}</p>
+            <p>Release Date: {{ game.release_date }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <div style="clear: both;"></div> {# Her satırın sonunda bir sonraki satıra geçmek için #}
+</div>
+{% endblock %}

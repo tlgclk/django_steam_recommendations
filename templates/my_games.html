@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}My Games - Steam Recommendations{% endblock %}
+
+{% block content %}
+<h1>My Games</h1>
+<div class="container" id="game-container">
+    {% for game in page_obj %}
+    <div class="game-card">
+        <img src="{{ game.header_image }}" alt="{{ game.name }}" class="game-image">
+        <div class="game-title">{{ game.name }}</div>
+        <div class="game-playtime">Playtime: {{ game.playtime_forever }} minutes</div>
+        <div class="game-details">
+            <p>AppID: {{ game.appid }}</p>
+            <p>Median Playtime: {{ game.median_playtime }}</p>
+            <p>Assuming Ratings: {{ game.Assuming_Ratings }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% if page_obj.has_next %}
+<div class="load-more" id="load-more" data-next-page="{{ page_obj.next_page_number }}">Load More</div>
+{% endif %}
+<script>
+    $(document).ready(function() {
+        $('#load-more').on('click', function() {
+            var nextPage = $(this).data('next-page');
+            $.ajax({
+                url: window.location.pathname,
+                data: {
+                    'page': nextPage
+                },
+                success: function(data) {
+                    $('#game-container').append(data.games_html);
+                    if (data.has_next) {
+                        $('#load-more').data('next-page', data.next_page_number);
+                    } else {
+                        $('#load-more').remove();
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

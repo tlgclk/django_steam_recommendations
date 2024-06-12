@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}CF Similarities{% endblock %}
+
+{% block content %}
+    <h1>CF Similarities</h1>
+    <div class="container">
+        <table>
+            <tr>
+                <th>User ID</th>
+                <th>User Alias</th>
+                <th>Similar User ID</th>
+                <th>Similar User Alias</th>
+                <th>Similarity Score</th>
+            </tr>
+            {% for similarity in similarities %}
+                <tr>
+                    <td>{{ similarity.user_id }}</td>
+                    <td>{{ similarity.user_alias }}</td>
+                    <td>{{ similarity.sim_user_id }}</td>
+                    <td>{{ similarity.sim_user_alias }}</td>
+                    <td>{{ similarity.similarity_score }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

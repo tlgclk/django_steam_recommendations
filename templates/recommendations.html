@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+    <h1>Game Recommendations</h1>
+    <div class="container">
+        {% for game in games %}
+        <div class="game-card">
+            <img src="{{ game.header_image }}" alt="{{ game.name }}" class="game-image">
+            <div class="game-title">{{ game.name }}</div>
+            <div class="game-playtime">Playtime: {{ game.playtime_forever }} minutes</div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

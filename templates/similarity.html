@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Similarity Scores{% endblock %}
+
+{% block content %}
+    <h1>Similarity Scores</h1>
+    <div class="container">
+        {% for user in similar_users_info %}
+            <div class="user-info">
+                <p>User ID: {{ user.user_id }}</p>
+                <p>User Alias: {{ user.user_alias }}</p>
+                <p>Similarity Score: {{ user.similarity_score }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
